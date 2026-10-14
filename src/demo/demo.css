@@ -1,0 +1,197 @@
+/* Три темы демо-меню. Общая разметка, у каждой темы свои токены и своя раскладка списка. */
+
+.v-kofe {
+  --bg: #f6ece9; --surface: #fffaf8; --ink: #3d2b27; --muted: #7a625c; --line: #ead9d4;
+  --accent: #9a5847; --on-accent: #fff; --soft: #f1dfda;
+  --head: 'Jost Variable', sans-serif; --body: 'Jost Variable', sans-serif;
+  --r: 22px; --r-btn: 999px;
+}
+.v-pub {
+  --bg: #e6ece4; --surface: #f3f6f1; --ink: #22302a; --muted: #56665d; --line: #cfd9cc;
+  --accent: #95590f; --on-accent: #fff; --soft: #dbe4d7;
+  --head: 'Oswald Variable', sans-serif; --body: 'Fira Sans', sans-serif;
+  --r: 6px; --r-btn: 6px;
+}
+.v-tatar {
+  --bg: #efecf3; --surface: #faf8fc; --ink: #2c2433; --muted: #675d71; --line: #ddd6e5;
+  --accent: #a23b4c; --on-accent: #fff; --soft: #e6e0ee;
+  --head: 'Lora Variable', serif; --body: 'Montserrat Variable', sans-serif;
+  --r: 16px; --r-btn: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; -webkit-tap-highlight-color: transparent; }
+h1, h2, h3, p { margin: 0; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.m { max-width: 560px; margin: 0 auto; padding: 0 16px 120px; }
+
+/* Шапка */
+.m-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 22px 0 10px; }
+.m-name { font-family: var(--head); font-size: 34px; line-height: 1; font-weight: 600; letter-spacing: -0.02em; }
+.m-kind { color: var(--muted); font-size: 14px; margin-top: 6px; }
+.m-table {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-btn);
+  padding: 7px 14px; font-size: 14px; font-weight: 500; white-space: nowrap;
+}
+.m-hello { color: var(--muted); font-size: 15px; max-width: 34ch; margin-bottom: 18px; }
+
+/* Вкладки */
+.m-tabs {
+  position: sticky; top: 0; z-index: 5; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
+  margin: 0 -16px; padding: 10px 16px; background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.m-tabs::-webkit-scrollbar { display: none; }
+.m-tab { position: relative; flex: none; padding: 10px 16px; border-radius: var(--r-btn); font-size: 15px; font-weight: 500; color: var(--muted); min-height: 44px; }
+.m-tab.is-on { color: var(--on-accent); }
+.m-tab-bg { position: absolute; inset: 0; border-radius: inherit; background: var(--accent); }
+.m-tab-label { position: relative; }
+
+/* Общие элементы позиции */
+.m-iname { font-family: var(--head); font-weight: 600; font-size: 17px; line-height: 1.2; }
+.m-idesc { color: var(--muted); font-size: 14px; margin-top: 4px; }
+.m-price { font-weight: 600; font-variant-numeric: tabular-nums; }
+.m-add {
+  display: inline-grid; place-items: center; min-width: 44px; height: 44px; padding: 0 14px;
+  border-radius: var(--r-btn); background: var(--accent); color: var(--on-accent); font-weight: 600;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.m-step {
+  display: inline-flex; align-items: center; height: 44px; border-radius: var(--r-btn);
+  background: var(--surface); border: 1px solid var(--line);
+}
+.m-step button { width: 40px; height: 42px; display: grid; place-items: center; color: var(--accent); }
+.m-step span { min-width: 18px; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Кофейня: сетка карточек с фото */
+.m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 14px; padding-top: 10px; }
+.m-grid .gi-media { position: relative; aspect-ratio: 1; border-radius: var(--r); overflow: visible; margin-bottom: 12px; }
+.m-grid .gi-media img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
+.gi-plain { background: var(--soft); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; }
+.gi-plain .m-iname { font-size: 19px; }
+.gi-foot { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+.m-grid .gi-foot .m-price { margin-top: 0; }
+.gi-qty { position: absolute; right: 8px; bottom: -14px; }
+.m-grid .m-price { margin-top: 8px; font-size: 16px; }
+
+/* Паб: плотный список, крупные цены */
+.v-pub .m-name, .v-pub .m-iname, .v-pub .mf-name { text-transform: uppercase; letter-spacing: 0.01em; }
+.v-pub .m-name { font-weight: 600; font-size: 40px; }
+.m-feature {
+  display: grid; grid-template-columns: 116px 1fr; gap: 14px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r); padding: 10px; margin-bottom: 8px;
+}
+.m-feature img { width: 116px; height: 100%; min-height: 140px; object-fit: cover; border-radius: 4px; }
+.mf-label { font-size: 12px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+.mf-name { font-family: var(--head); font-size: 22px; line-height: 1.1; margin-top: 4px; font-weight: 600; }
+.mf-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.mf-foot .m-price { font-family: var(--head); font-size: 24px; }
+.m-list { display: block; }
+.m-list .m-item { display: flex; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.m-list .m-item:last-child { border-bottom: 0; }
+.li-thumb { width: 64px; height: 64px; object-fit: cover; object-position: 50% 72%; border-radius: 4px; flex: none; }
+.li-body { flex: 1; min-width: 0; }
+.li-side { display: flex; align-items: center; gap: 12px; }
+.v-pub .li-side .m-price { font-family: var(--head); font-size: 24px; font-weight: 500; }
+
+/* Татарская кухня: журнальная колонка с точками до цены */
+.v-tatar .m-head { padding-top: 0; margin: 0 -16px; padding: 26px 16px 18px; position: relative; }
+.v-tatar .m-head::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 10px; opacity: 0.55;
+  background:
+    radial-gradient(circle at 5px 5px, var(--accent) 2px, transparent 2.5px) 0 0 / 20px 10px,
+    radial-gradient(circle at 15px 5px, color-mix(in srgb, var(--accent) 40%, var(--bg)) 3px, transparent 3.5px) 0 0 / 20px 10px;
+}
+.v-tatar .m-name { font-style: italic; font-weight: 500; font-size: 38px; }
+.v-tatar .m-hello { margin-top: 14px; }
+.m-editorial { padding-top: 8px; }
+.m-group { font-family: var(--head); font-style: italic; font-weight: 500; font-size: 28px; margin: 10px 0 6px; }
+.m-editorial .m-item { padding: 18px 0 16px; border-bottom: 1px solid var(--line); }
+.ei-photo { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r); margin-bottom: 14px; }
+.ei-row { display: flex; align-items: baseline; gap: 8px; }
+.ei-row .m-iname { font-size: 21px; font-weight: 500; }
+.ei-dots { flex: 1; border-bottom: 2px dotted color-mix(in srgb, var(--muted) 45%, transparent); transform: translateY(-4px); }
+.ei-row .m-price { font-family: var(--head); font-size: 19px; }
+.m-editorial .m-idesc { max-width: 36ch; }
+.m-editorial .m-add, .m-editorial .m-step { margin-top: 12px; }
+.m-editorial .m-add { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); box-shadow: none; font-size: 14px; height: 40px; }
+
+/* Корзина-плашка */
+.m-cartbar {
+  position: fixed; left: 16px; right: 16px; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 10;
+  max-width: 528px; margin: 0 auto; display: flex; align-items: center; gap: 10px; height: 58px; padding: 0 20px;
+  border-radius: var(--r-btn); background: var(--ink); color: var(--bg); font-weight: 500;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--ink) 30%, transparent);
+}
+.m-cartbar-total { margin-left: auto; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Шторка корзины */
+.sh-backdrop { position: fixed; inset: 0; z-index: 20; background: color-mix(in srgb, var(--ink) 35%, transparent); }
+.sh {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 21; max-width: 560px; margin: 0 auto;
+  max-height: 88dvh; overflow-y: auto; background: var(--surface); border-radius: 24px 24px 0 0;
+  padding: 12px 20px max(24px, env(safe-area-inset-bottom));
+}
+.v-pub .sh { border-radius: 10px 10px 0 0; }
+.sh-grip { width: 40px; height: 4px; border-radius: 2px; background: var(--line); margin: 0 auto 14px; }
+.sh-close { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; display: grid; place-items: center; color: var(--muted); }
+.sh h2 { font-family: var(--head); font-size: 26px; font-weight: 600; margin-bottom: 12px; }
+.sh-line { display: grid; grid-template-columns: 1fr auto 76px; gap: 10px; align-items: center; padding: 8px 0; }
+.sh-line-name { font-weight: 500; }
+.sh-line-sum { text-align: right; font-variant-numeric: tabular-nums; }
+.sh-empty { color: var(--muted); padding: 16px 0; }
+.sh-total { display: flex; justify-content: space-between; font-weight: 600; font-size: 18px; padding: 14px 0; border-top: 1px solid var(--line); margin-top: 6px; }
+.sh-field { display: grid; gap: 6px; margin: 6px 0 16px; font-size: 14px; color: var(--muted); }
+.sh-field textarea {
+  font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 12px; padding: 10px 12px; resize: none;
+}
+.sh-field textarea::placeholder { color: color-mix(in srgb, var(--muted) 80%, transparent); }
+.m-btn {
+  display: flex; justify-content: center; align-items: center; width: 100%; min-height: 54px; padding: 0 18px;
+  border-radius: var(--r-btn); background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 16px;
+}
+.m-btn:disabled { opacity: 0.5; cursor: default; }
+.m-btn:active:not(:disabled) { transform: scale(0.98); }
+.sh-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 12px; }
+.sh-done { text-align: center; padding: 18px 0 6px; }
+.sh-done-mark { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 16px; background: var(--accent); color: var(--on-accent); }
+.sh-done p { color: var(--muted); margin: 8px auto 22px; max-width: 30ch; }
+
+/* Карточка официанта (имитация Telegram) */
+.wc { position: fixed; top: 12px; left: 12px; right: 12px; z-index: 30; max-width: 400px; margin: 0 auto; }
+.wc-caption {
+  width: max-content; margin: 0 auto 8px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  background: var(--ink); color: var(--bg);
+}
+.wc-card {
+  background: #fff; color: #1d2733; border-radius: 16px; padding: 12px 14px 14px;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 14px;
+  box-shadow: 0 18px 50px rgb(29 39 51 / 0.22), 0 0 0 1px rgb(29 39 51 / 0.06);
+}
+.wc-top { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #6b7785; }
+.wc-tg { color: #2a9ee8; }
+.wc-time { margin-left: auto; }
+.wc-x { width: 44px; height: 44px; display: grid; place-items: center; color: #6b7785; margin: -14px -14px -14px 0; }
+.wc-comment { color: #4a5563; font-style: italic; margin-top: 4px; }
+.wc-title { font-weight: 700; margin: 6px 0 6px; }
+.wc-lines { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+.wc-lines li { display: flex; justify-content: space-between; gap: 12px; }
+.wc-total { font-weight: 700; margin-top: 6px; }
+.wc-btn {
+  margin-top: 10px; height: 38px; display: flex; justify-content: center; align-items: center; gap: 6px;
+  border-radius: 10px; background: #e8f3fc; color: #1d7fc4; font-weight: 600;
+}
+.wc-btn.is-done { background: #e5f6ea; color: #23864a; }
+
+@media (min-width: 700px) {
+  .m-grid { gap: 28px 20px; }
+}
