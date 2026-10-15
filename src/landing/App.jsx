@@ -112,14 +112,14 @@ function Pricing() {
             <h3>Запуск</h3>
             <p>Меню в стиле заведения, бот для официантов, QR-таблички с номерами столов для печати.</p>
           </div>
-          <div className="price-sum">от 15 000 ₽</div>
+          <div className="price-sum">от 10 000 ₽</div>
         </div>
         <div className="price-row">
           <div>
             <h3>Доработки после запуска</h3>
             <p>Первые две недели правки бесплатно. Дальше по часам, когда понадобится.</p>
           </div>
-          <div className="price-sum">от 800 ₽/час</div>
+          <div className="price-sum">от 500 ₽/час</div>
         </div>
       </Reveal>
     </section>
