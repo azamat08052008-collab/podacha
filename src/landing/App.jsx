@@ -10,6 +10,7 @@ import Flow from './Flow'
 import Demos from './Demos'
 import { TG, EMAIL } from './shared'
 import cappuccino from '../assets/img/kofe/cappuccino.webp'
+import logo from '../assets/logo.webp'
 
 const ease = [0.16, 1, 0.3, 1]
 
@@ -32,7 +33,7 @@ export default function App() {
   return (
     <>
       <nav className="nav">
-        <a href="#top" className="logo"><span className="logo-mark" aria-hidden="true" />Подача</a>
+        <a href="#top" className="logo"><img className="logo-mark" src={logo} alt="" />Подача</a>
         <div className="nav-links">
           <a href="#how">Как работает</a>
           <a href="#demo">Демо</a>

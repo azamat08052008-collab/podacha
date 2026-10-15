@@ -46,7 +46,7 @@ img { display: block; max-width: 100%; }
   background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
 .logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
-.logo-mark { width: 22px; height: 22px; border-radius: 7px; background: var(--accent); box-shadow: 6px 6px 0 -1px var(--accent-soft); }
+.logo-mark { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px #fff, 0 4px 12px rgb(196 71 47 / 0.3); }
 .nav-links { display: flex; gap: 28px; margin-left: auto; font-size: 15px; color: var(--muted); }
 .nav-links a:hover { color: var(--ink); }
 
